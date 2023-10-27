@@ -8,8 +8,8 @@ interface CartItemProps {
   item: ResolvedCartItem;
 }
 
-export const CartItem = component$((props: CartItemProps) => {
-  const item = useSignal(props.item);
+export const CartItem = component$(({item}: CartItemProps) => {
+  // const item = useSignal(props.item);
   
   // todo uncomment and it works
   /* useTask$((tracker) => {
@@ -22,17 +22,17 @@ export const CartItem = component$((props: CartItemProps) => {
   return (
     <tr class="cartItem">
       <td width="65">
-        <img src={item.value.product.image} alt={`${item.value.product.name} image`}/>
+        <img src={item.product.image} alt={`${item.product.name} image`}/>
       </td>
-      <td width="342" class="cart-full-text">{item.value.product.name}</td>
+      <td width="342" class="cart-full-text">{item.product.name}</td>
       <td width="325">
-        <a href={`/product/${item.value.productId}`}>Details</a>
+        <a href={`/product/${item.productId}`}>Details</a>
       </td>
-      <td width="300" class="cart-full-text">{currencyFormat(item.value.product.price)}</td>
+      <td width="300" class="cart-full-text">{currencyFormat(item.product.price)}</td>
       <td width="142">
         <PlusMinus
-          qty={item.value.qty}
-          id={item.value.productId}
+          qty={item.qty}
+          id={item.productId}
           updateAction={updateAction}
         />
       </td>
